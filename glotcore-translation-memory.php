@@ -41,5 +41,16 @@ define( 'GC_TM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
  */
 function gp_init() {
 	global $glotcore_translation_memory;
+
+	require_once trailingslashit( __DIR__ ) . 'src/trait-helper.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-core.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-database.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-query.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-ranker.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-search.php';
+	require_once trailingslashit( __DIR__ ) . 'src/class-sync.php';
+
+	$glotcore_translation_memory['core'] = new Core();
+	$glotcore_translation_memory['sync'] = new Sync();
 }
 add_action( 'gp_init', 'GlotCore\TranslationMemory\gp_init' );
